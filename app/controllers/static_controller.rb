@@ -42,11 +42,11 @@ class StaticController < ApplicationController
       message = body["errors"][0]["message"]
       session_cached = false
     end
-    puts success_message
+  #  puts success_message
     
     #if the transaction fails then reset the session data
     unless success_message
-      puts "changing session to nil"
+   #   puts "changing session to nil"
       session[:current_user_token] = nil
       session[:current_user_name] = nil
     end
@@ -64,7 +64,7 @@ class StaticController < ApplicationController
 
   def logout
     if not session[:current_user_token].blank?
-      uri = URI.parse('https://core.spreedly.com/v1/payment_methods/'+session[:current_user_token]+'/redact.json')
+      uri = URI.parse('https://core.spreedly.com/v1/payment_methods/'+session[:current_user_token]+'redact.json')
       http = Net::HTTP.new(uri.host, uri.port)
       http.use_ssl = true
       get_request = Net::HTTP::Put.new(uri.request_uri)
@@ -72,8 +72,8 @@ class StaticController < ApplicationController
       http.set_debug_output(STDOUT)
       response = http.request(get_request)
       response_data = JSON.parse response.body
-      puts JSON.parse response.body    
-      puts 'removing session token'
+#      puts JSON.parse response.body    
+#      puts 'removing session token'
     end
       session[:current_user_token] = nil
       session[:current_user_name] = nil
@@ -104,7 +104,6 @@ class StaticController < ApplicationController
         @transaction_data[4].push(transaction['transaction_type'])
       end
     end
-    puts "transactions data = "+ @transaction_data.to_s
   end
 
   private
@@ -140,7 +139,7 @@ class StaticController < ApplicationController
   
   def setup
     if not session[:current_user_token].blank?
-      puts "there is a token"
+  #    puts "there is a token"
       @token_present = true
     end
     

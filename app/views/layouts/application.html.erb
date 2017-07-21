@@ -16,14 +16,14 @@
 			<a class="navbar-brand" href="/">Spreedly</a>
 		</div>
 
-		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+		<div class="collapse navbar-collapse" >
 			<ul class="nav navbar-nav">
 				<li> <a href="/static/transactions">View Transactions</a></li>
 			</ul>
 
 			<ul class="nav navbar-nav navbar-right">
-				<li id="name"><%if @token_present%><%=@user_name%><%else%><%end%></li>
-				<button id="logout" class="btn btn-default" onclick="logout()"  <%unless @token_present%> style='display:none'<%end%>>Forgot me and my Card </button>
+				<li id="name"><a href="#"><%if @token_present%><%=@user_name%><%else%><%end%></a></li>
+				<li><a href="#"><button id="logout" class="btn btn-default" onclick="logout()"  <%unless @token_present%> style='display:none'<%end%>>Forgot me and my Card </button></a></li>
 
 			</ul>
 		</div>
