@@ -1,0 +1,27 @@
+<div class="container">
+	<div class="row"> 
+		<h2>Check out the most recent transactions </h2>
+		<table class="table">
+			<thead>
+				<tr>
+					<th>#</th>
+					<th>Date</th>
+					<th>Name</th>
+					<th>Amount</th>
+					<th>Successful? </th>
+					<th>Processed By</th>
+				</tr>
+			</thead>
+			<tbody>
+				<%@transaction_data[0].each_with_index do |date, index| %>
+					<tr>
+						<th scope = "row"><%=index+1%></th>
+						<td><%=Time.parse(date).strftime('%A, %d %b %Y %l:%M %p')%></td>
+						<td><%=@transaction_data[3][index]%></td>
+						<td><%if @transaction_data[1][index].nil?%> ----- <%else%>$<%=@transaction_data[1][index].to_i/100%>.00<%end%></td>
+						<td><%=@transaction_data[2][index]%></td>
+						<td><%if @transaction_data[4][index] == "DeliverPaymentMethod"%>Priceline <%else%>Spreedly Air <%end%></td>
+					</tr>
+				<%end%>
+			</tbody>
+		</table>

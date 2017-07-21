@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>SpreedlyAirplaneApp</title>
+  <script src="https://core.spreedly.com/iframe/express-2.min.js"></script>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+
+  
+</head>
+<body>
+  <nav class ="navbar navbar-inverse navbar-static-top">
+	  <div class="container">
+	  	<div class="navbar-header">
+			<a class="navbar-brand" href="/">Spreedly</a>
+		</div>
+
+		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+			<ul class="nav navbar-nav">
+				<li> <a href="/static/transactions">View Transactions</a></li>
+			</ul>
+
+			<ul class="nav navbar-nav navbar-right">
+				<li id="name"><%if @token_present%><%=@user_name%><%else%><%end%></li>
+				<button id="logout" class="btn btn-default" onclick="logout()"  <%unless @token_present%> style='display:none'<%end%>>Forgot me and my Card </button>
+
+			</ul>
+		</div>
+	  </div>
+  </nav>
+<%= yield %>
+
+</body>
+</html>
